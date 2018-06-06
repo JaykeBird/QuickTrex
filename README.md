@@ -8,6 +8,9 @@ QuickTrex is short for "quick translation experience". It lacks the advanced fea
 * Write translations in your language while seeing the text in the original language
 * Export to XML, JSON, XAML ResourceDictionary, CSV, and more!
 
+## License
+QuickTrex is licensed under the [MIT License](LICENSE).
+
 ## Release requirements
 To use QuickTrex, you need to have:
 
