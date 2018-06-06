@@ -1,7 +1,5 @@
 # QuickTrex
-A quick and simple localization program, for usage by small/hobbyist developers!
-
-QuickTrex is short for "quick translation experience". It lacks the advanced features found in more professional offerings, but for when you just want to start out with something small and tiny, this may work for you!
+A quick and simple localization program, for usage by small/hobbyist developers! It lacks the advanced features found in more professional offerings, but for when you just want to start out with something small and tiny, this may work for you!
 
 ## Features
 * Organize strings into categories
