@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+
+namespace QuickTranslate
+{
+
+    // thanks to StackOverflow user Donnelle
+    // http://stackoverflow.com/questions/660554/how-to-automatically-select-all-text-on-focus-in-wpf-textbox
+
+    /// <summary>
+    /// A TextBox where all the text is automatically selected when you click on the text box.
+    /// </summary>
+    public class ClickSelectTextBox : TextBox
+    {
+        /// <summary>
+        /// Creates a new ClickSelectTextBox and defines the default event handlers.
+        /// </summary>
+        public ClickSelectTextBox()
+        {
+            AddHandler(PreviewMouseLeftButtonDownEvent,
+              new MouseButtonEventHandler(MouseButtonDown), true);
+            AddHandler(GotKeyboardFocusEvent,
+              new RoutedEventHandler(SelectAllText), true);
+            AddHandler(MouseDoubleClickEvent,
+              new RoutedEventHandler(SelectAllText), true);
+        }
+
+        /// <summary>
+        /// Handler for when the left mouse button is pressed.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Event arguments representing the mouse button being pressed.</param>
+        private static void MouseButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Find the TextBox
+            DependencyObject parent = e.OriginalSource as UIElement;
+            while (parent != null && !(parent is TextBox))
+                parent = VisualTreeHelper.GetParent(parent);
+
+            if (parent != null)
+            {
+                var textBox = (TextBox) parent;
+                if (!textBox.IsKeyboardFocusWithin)
+                {
+                    // If the text box is not yet focussed, give it the focus and
+                    // stop further processing of this click event.
+                    textBox.Focus();
+                    e.Handled = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Locate the TextBox and have it select all text.
+        /// </summary>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">Event arguments providing details about the event.</param>
+        private static void SelectAllText(object sender, RoutedEventArgs e)
+        {
+            var textBox = e.OriginalSource as TextBox;
+            if (textBox != null)
+                textBox.SelectAll();
+        }
+    }
+}

@@ -1,0 +1,26 @@
+﻿<Window x:Class="QuickTranslate.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuickTranslate"
+        mc:Ignorable="d" ResizeMode="NoResize" Topmost="True"
+        Title="About" Height="315" Width="400" Icon="Icon.ico">
+    <Grid>
+        <TextBlock x:Name="txtName" FontSize="20" HorizontalAlignment="Left" Margin="74,10,0,0" TextWrapping="Wrap" Text="QuickTrex" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="165,19,0,0" TextWrapping="Wrap" Text="For Shine Calendar" VerticalAlignment="Top" Visibility="Collapsed" />
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="74,42,0,0" TextWrapping="Wrap" Text="Translation/Localization Extension" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="74,58,0,0" TextWrapping="Wrap" Text="Based upon DataSynth project" VerticalAlignment="Top"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="32" Margin="20,19,0,0" VerticalAlignment="Top" Width="32" Source="Icon32.png"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="74,85,0,0" TextWrapping="Wrap" Text="Version 1.2" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="74,101,0,0" TextWrapping="Wrap" Text="© Jacob R. Huempfner, 2014-2018. All rights reserved." VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="74,181,0,0" TextWrapping="Wrap" Text="Find me on Twitter:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="74,197,0,0" TextWrapping="Wrap" Text="@JaykeBird" VerticalAlignment="Top" 
+                   Foreground="DeepSkyBlue" TextDecorations="Underline" Focusable="True" MouseDown="textBlock_Copy5_MouseDown" />
+        <Button x:Name="btnOK" Content="Close" HorizontalAlignment="Left" Margin="74,232,0,0" VerticalAlignment="Top" Width="75" Height="24" Click="btnOK_Click" />
+        <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="74,133,0,0" TextWrapping="Wrap" Text="No warranties are provided for usage of this program." VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="74,149,0,0" TextWrapping="Wrap" Text="Source code is available upon request." VerticalAlignment="Top"/>
+
+
+    </Grid>
+</Window>
