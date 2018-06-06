@@ -30,9 +30,31 @@ namespace QuickTranslate
             Process.Start("http://twitter.com/JaykeBird");
         }
 
+        private void textBlock_Copy5_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter || e.Key == Key.Space)
+            {
+                Process.Start("http://twitter.com/JaykeBird");
+            }
+        }
+
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
+        private void textBlock_Copy8_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://github.com/JaykeBird/QuickTrex");
+        }
+
+        private void textBlock_Copy8_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter || e.Key == Key.Space)
+            {
+                Process.Start("https://github.com/JaykeBird/QuickTrex");
+            }
+        }
+
     }
 }
