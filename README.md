@@ -1,6 +1,8 @@
 # QuickTrex
 A quick and simple localization program, for usage by small/hobbyist developers! It lacks the advanced features found in more professional offerings, but for when you just want to start out with something small and tiny, this may work for you!
 
+[Get started with it today!](https://github.com/JaykeBird/QuickTrex/releases)
+
 ## Features
 * Organize strings into categories
 * Write translations in your language while seeing the text in the original language
@@ -20,10 +22,3 @@ To use QuickTrex, you need to have:
 To develop QuickTrex, you need to have Visual Studio 2017 and all the stuff above.
 
 You could maybe be okay with an earlier version of Visual Studio, but no guarantees!
-
-## Changelog
-
-Version 1.2 - 6 June 2018
-* Fixed an issue with keyboard shortcuts
-* Added Resx export option
-* Added Properties window
