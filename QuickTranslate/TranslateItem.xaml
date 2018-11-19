@@ -19,7 +19,7 @@
         <Rectangle HorizontalAlignment="Left" Margin="4,16,0,0" Fill="DarkGray" VerticalAlignment="Top" Height="2" Width="2"/>
         <Rectangle HorizontalAlignment="Left" Margin="8,16,0,0" Fill="DarkGray" VerticalAlignment="Top" Height="2" Width="2"/>
         <Grid Background="#01000000" x:Name="dragField" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Cursor="SizeNS" MouseMove="dragField_MouseMove" />
-        <CheckBox x:Name="chkSelect" Content="" HorizontalAlignment="Left" Margin="14,7,0,0" VerticalAlignment="Top" ToolTip="Select" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" Width="18" />
+        <CheckBox x:Name="chkSelect" Content="" HorizontalAlignment="Left" Margin="13,7,0,0" VerticalAlignment="Top" ToolTip="Select" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" Width="18" />
         <Rectangle x:Name="dropAboveShow" Visibility="Collapsed" Fill="Black" Height="2" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
         <Rectangle x:Name="dropBelowShow" Visibility="Collapsed" Fill="Black" Height="2" VerticalAlignment="Bottom" Grid.ColumnSpan="3"/>
         <Grid Background="#01000000" Grid.ColumnSpan="3" x:Name="dropGridAbove" Visibility="Collapsed" Margin="0,0,0,16" AllowDrop="True" DragEnter="dropGridAbove_DragEnter" DragLeave="dropGridAbove_DragLeave" DragOver="dropGridAbove_DragOver" Drop="dropGridAbove_Drop" />
