@@ -13,6 +13,7 @@ using QuickTranslate.Io;
 using System.Text;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Windows.Automation;
 
 namespace QuickTranslate
 {
@@ -194,6 +195,9 @@ namespace QuickTranslate
             tb.TouchDown += category_TouchDown;
             tb.StylusDown += category_StylusDown;
 
+            AutomationProperties.SetItemType(tb, "category item");
+            AutomationProperties.SetItemStatus(tb, "not selected");
+
             stkCategories.Children.Add(tb);
 
             return true;
@@ -247,6 +251,10 @@ namespace QuickTranslate
                 {
                     sel = item;
                 }
+                else
+                {
+                    AutomationProperties.SetItemStatus(item, "not selected");
+                }
             }
 
             if (sel != null)
@@ -263,6 +271,8 @@ namespace QuickTranslate
                 {
                     mnuCategoryDelete.IsEnabled = true;
                 }
+
+                AutomationProperties.SetItemStatus(sel, "selected");
 
                 SetupCategoryFromBackend(name);
             }
@@ -285,6 +295,12 @@ namespace QuickTranslate
 
             if (aid.DialogResult)
             {
+                if (string.IsNullOrWhiteSpace(aid.ItemName))
+                {
+                    MessageBox.Show("Category names cannot be blank.", "Invalid Name", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 AddCategory(aid.ItemName);
             }
         }
@@ -1020,7 +1036,7 @@ namespace QuickTranslate
 
             Document d = Open("Open");
 
-            if (d.Categories == null)
+            if (d == null || d.Categories == null)
             {
                 return;
             }
@@ -1042,7 +1058,7 @@ namespace QuickTranslate
         {
             Document d = Open("Open as Base");
 
-            if (d.Categories == null)
+            if (d == null || d.Categories == null)
             {
                 return;
             }

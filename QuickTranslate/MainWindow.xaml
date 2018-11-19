@@ -355,9 +355,9 @@
                             </Grid.ColumnDefinitions>
                             <GridSplitter x:Name="spltId" HorizontalAlignment="Right" Width="3" Background="DarkGray" DragCompleted="spltId_DragCompleted" DragDelta="spltId_DragDelta" />
                             <GridSplitter x:Name="spltBase" HorizontalAlignment="Right" Width="3" Background="DarkGray" Grid.Column="1" DragCompleted="spltId_DragCompleted" DragDelta="spltId_DragDelta" />
-                            <TextBlock x:Name="txtId" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,2" TextTrimming="CharacterEllipsis" Text="ID" />
-                            <TextBlock x:Name="txtBase" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,2" TextTrimming="CharacterEllipsis" Text="Base String" Grid.Column="1" />
-                            <TextBlock x:Name="txtTitem" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,2" TextTrimming="CharacterEllipsis" Text="Translated String" Grid.Column="2" />
+                            <TextBlock x:Name="txtId" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,2" TextTrimming="CharacterEllipsis" Text="ID" AutomationProperties.IsColumnHeader="True" />
+                            <TextBlock x:Name="txtBase" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,2" TextTrimming="CharacterEllipsis" Text="Base String" Grid.Column="1" AutomationProperties.IsColumnHeader="True" />
+                            <TextBlock x:Name="txtTitem" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,2" TextTrimming="CharacterEllipsis" Text="Translated String" Grid.Column="2" AutomationProperties.IsColumnHeader="True" />
                         </Grid>
 
                         <ScrollViewer Background="White" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MouseUp="stkTranslations_MouseUp" >
