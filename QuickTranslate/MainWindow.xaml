@@ -260,6 +260,8 @@
                     <MenuItem Header="_Open Translation..." x:Name="mnuOpen" Click="mnuOpen_Click" />
                     <MenuItem Header="Open Translation as _Base..." x:Name="mnuOpenAsBase" Click="mnuOpenAsBase_Click" />
                     <Separator />
+                    <MenuItem Header="_Add Missing Entries from Base" x:Name="mnuCreateFromBase" Click="mnuCreateFromBase_Click" IsChecked="True" Checked="mnuCreateFromBase_Checked" Unchecked="mnuCreateFromBase_Unchecked" />
+                    <Separator />
                     <MenuItem Header="_Save Translation" x:Name="mnuSave" Click="mnuSave_Click" />
                     <MenuItem Header="Save _As..." x:Name="mnuSaveAs" Click="mnuSaveAs_Click" />
                     <Separator />
@@ -347,7 +349,7 @@
                             <RowDefinition Height="24"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
-                        <Grid Background="Gainsboro">
+                        <Grid x:Name="grdHeaders" Background="Gainsboro" Margin="0,0,18,0" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="12*" x:Name="colId" />
                                 <ColumnDefinition Width="16*" x:Name="colBase" />
@@ -360,7 +362,7 @@
                             <TextBlock x:Name="txtTitem" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,2" TextTrimming="CharacterEllipsis" Text="Translated String" Grid.Column="2" AutomationProperties.IsColumnHeader="True" />
                         </Grid>
 
-                        <ScrollViewer Background="White" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MouseUp="stkTranslations_MouseUp" >
+                        <ScrollViewer Background="White" Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" MouseUp="stkTranslations_MouseUp" >
                             <StackPanel x:Name="stkTranslations" >
 
                             </StackPanel>

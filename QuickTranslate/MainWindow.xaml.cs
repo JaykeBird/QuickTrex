@@ -26,6 +26,8 @@ namespace QuickTranslate
         {
             InitializeComponent();
             InitialKeyboardShortcutSetup();
+
+            grdHeaders.Margin = new Thickness(0, 0, SystemParameters.VerticalScrollBarWidth, 0);
         }
 
         bool setup = false;
@@ -53,6 +55,8 @@ namespace QuickTranslate
 
         List<Category> categories = new List<Category>();
         List<Category> baseCategories = new List<Category>();
+
+        List<string> categoryNames = new List<string>();
 
         /// <summary>
         /// Represents name of the current category
@@ -135,7 +139,7 @@ namespace QuickTranslate
 
         #endregion
 
-        #region Base Methods
+        #region Basic Methods
 
         void AddCategory(string name)
         {
@@ -171,9 +175,9 @@ namespace QuickTranslate
 
         bool RegisterCategory(string name)
         {
-            foreach (Label item in stkCategories.Children)
+            foreach (string item in categoryNames)
             {
-                if (item.Content as string == name)
+                if (item == name)
                 {
                     MessageBox.Show("There is already a category with the name \"" + name + "\".", "Cannot Add Category", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return false;
@@ -199,8 +203,22 @@ namespace QuickTranslate
             AutomationProperties.SetItemStatus(tb, "not selected");
 
             stkCategories.Children.Add(tb);
+            categoryNames.Add(name == "(None)" ? "" : name);
 
             return true;
+        }
+
+        Category GetCategory(string name)
+        {
+            foreach (Category item in categories)
+            {
+                if (item.Name == name)
+                {
+                    return item;
+                }
+            }
+
+            return null;
         }
 
         void DeleteCategory(string name)
@@ -224,6 +242,7 @@ namespace QuickTranslate
             {
                 SelectCategory("(None)");
                 stkCategories.Children.Remove(sel);
+                categoryNames.Remove(name);
             }
         }
 
@@ -231,6 +250,7 @@ namespace QuickTranslate
         {
             stkCategories.Children.Clear();
             categories.Clear();
+            categoryNames.Clear();
         }
 
         void SelectCategory(string name)
@@ -439,7 +459,7 @@ namespace QuickTranslate
             ti.DragStart += Ti_DragStart;
             ti.DragEnd += Ti_DragEnd;
             ti.ItemDrop += Ti_ItemDrop;
-            
+
             if (index == -1)
             {
                 stkTranslations.Children.Add(ti);
@@ -889,6 +909,8 @@ namespace QuickTranslate
 
         #region Path in Title Bar
 
+        bool showPath = false;
+
         private void mnuFilePath_Click(object sender, RoutedEventArgs e)
         {
             mnuFilePath.IsChecked = !(mnuFilePath.IsChecked);
@@ -896,12 +918,40 @@ namespace QuickTranslate
 
         private void mnuFilePath_Checked(object sender, RoutedEventArgs e)
         {
-            UpdateLocation(fileLocation);
+            showPath = true;
+            UpdateTitlebar();
         }
 
         private void mnuFilePath_Unchecked(object sender, RoutedEventArgs e)
         {
-            Title = "QuickTrex";
+            showPath = false;
+            UpdateTitlebar();
+        }
+
+        private void UpdateTitlebar()
+        {
+            string title = "QuickTrex";
+
+            if (showPath)
+            {
+                title += " - ";
+
+                if (fileLocation != "")
+                {
+                    title += fileLocation;
+                }
+                else
+                {
+                    title += "(New File)";
+                }
+
+                if (dirty)
+                {
+                    title += "*";
+                }
+            }
+
+            Title = title;
         }
 
         #endregion
@@ -958,6 +1008,8 @@ namespace QuickTranslate
             {
                 lblUnsavedChanges.Visibility = Visibility.Collapsed;
             }
+
+            UpdateTitlebar();
         }
 
         #endregion
@@ -980,17 +1032,7 @@ namespace QuickTranslate
         {
             fileLocation = loc;
 
-            if (mnuFilePath.IsChecked)
-            {
-                if (loc != "")
-                {
-                    Title = "QuickTrex - " + loc;
-                }
-                else
-                {
-                    Title = "QuickTrex - (New File)";
-                }
-            }
+            UpdateTitlebar();
         }
 
         private void mnuNew_Click(object sender, RoutedEventArgs e)
@@ -1040,6 +1082,11 @@ namespace QuickTranslate
             {
                 return;
             }
+            else if (d.HadMalformedElements)
+            {
+                MessageBox.Show("One or more categories in this document may not have been opened properly. Check in a text editor to make sure the file had been saved correctly.", 
+                    "Load Problem", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
 
             doc = d;
 
@@ -1062,10 +1109,41 @@ namespace QuickTranslate
             {
                 return;
             }
+            else if (d.HadMalformedElements)
+            {
+                MessageBox.Show("One or more categories in this document may not have been opened properly. Check in a text editor to make sure the file had been saved correctly.", 
+                    "Load Problem", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
 
             baseDoc = d;
 
             baseCategories = d.Categories;
+
+            if (createEntriesFromBase)
+            {
+                // first, make sure all categories have been added
+                foreach (Category item in baseCategories)
+                {
+                    if (!categoryNames.Contains(item.Name))
+                    {
+                        AddCategory(item.Name);
+                    }
+                }
+
+                // second, make sure all categories have an entry
+                foreach (Category item in baseCategories)
+                {
+                    Category g = GetCategory(item.Name);
+
+                    foreach (Translation t in item.Translations)
+                    {
+                        if (g.GetTranslation(t.Id) == null)
+                        {
+                            g.AddTranslation(t.Id, "");
+                        }
+                    }
+                }
+            }
 
             SelectCategory(catName);
         }
@@ -1112,6 +1190,23 @@ namespace QuickTranslate
             {
                 doc.Properties = pd.Properties;
             }
+        }
+
+        bool createEntriesFromBase = false;
+
+        private void mnuCreateFromBase_Click(object sender, RoutedEventArgs e)
+        {
+            mnuCreateFromBase.IsChecked = !mnuCreateFromBase.IsChecked;
+        }
+
+        private void mnuCreateFromBase_Checked(object sender, RoutedEventArgs e)
+        {
+            createEntriesFromBase = true;
+        }
+
+        private void mnuCreateFromBase_Unchecked(object sender, RoutedEventArgs e)
+        {
+            createEntriesFromBase = false;
         }
 
         #endregion
@@ -1325,6 +1420,7 @@ namespace QuickTranslate
             RegisterKeyboardShortcut(KeyboardCombination.CtrlShift, Key.S, "SaveAs");
             RegisterKeyboardShortcut(KeyboardCombination.Ctrl, Key.E, "Export");
             RegisterKeyboardShortcut(KeyboardCombination.Ctrl, Key.O, "Open");
+            RegisterKeyboardShortcut(KeyboardCombination.CtrlAlt, Key.O, "OpenAsBase");
             RegisterKeyboardShortcut(KeyboardCombination.Ctrl, Key.C, "Copy");
             RegisterKeyboardShortcut(KeyboardCombination.Ctrl, Key.X, "Cut");
             RegisterKeyboardShortcut(KeyboardCombination.Ctrl, Key.V, "Paste");
@@ -1707,6 +1803,8 @@ namespace QuickTranslate
                     return mnuOpen_Click;
                 case "OpenAsBase":
                     return mnuOpenAsBase_Click;
+                case "CreateFromBase":
+                    return mnuCreateFromBase_Click;
                 case "Save":
                     return mnuSave_Click;
                 case "SaveAs":
@@ -1733,6 +1831,8 @@ namespace QuickTranslate
                     return mnuCategories_Click;
                 case "StatusBar":
                     return mnuStatusBar_Click;
+                case "FilePath":
+                    return mnuFilePath_Click;
                 // Modify menu
                 case "CategoryAdd":
                     return mnuCategoryAdd_Click;
@@ -1774,6 +1874,8 @@ namespace QuickTranslate
                     return mnuOpen;
                 case "OpenAsBase":
                     return mnuOpenAsBase;
+                case "CreateFromBase":
+                    return mnuCreateFromBase;
                 case "Save":
                     return mnuSave;
                 case "SaveAs":
@@ -1800,6 +1902,8 @@ namespace QuickTranslate
                     return mnuCategories;
                 case "StatusBar":
                     return mnuStatusBar;
+                case "FilePath":
+                    return mnuFilePath;
                 // Modify menu
                 case "CategoryAdd":
                     return mnuCategoryAdd;
@@ -1821,10 +1925,9 @@ namespace QuickTranslate
 
 
 
-        #endregion
 
         #endregion
 
-
+        #endregion
     }
 }

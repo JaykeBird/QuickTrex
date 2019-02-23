@@ -19,9 +19,21 @@ namespace QuickTranslate.Io
             XDocument xdoc = XDocument.Load(file);
             List<Category> cats = new List<Category>();
 
+            bool malformed = false;
+
             foreach (XElement ele in xdoc.Root.Elements("category"))
             {
-                cats.Add(LoadCategory(ele));
+                Category c = LoadCategory(ele);
+
+                if (c != null) // null check to avoid malformed files
+                {
+                    cats.Add(c);
+                }
+                else
+                {
+                    malformed = true;
+                }
+
             }
 
             Base.Properties p = null;
@@ -29,19 +41,20 @@ namespace QuickTranslate.Io
 
             if (elp != null)
             {
-                p.Product = elp.Attribute("product").Value ?? "";
-                p.Author = elp.Attribute("author").Value ?? "";
-                p.Language = elp.Attribute("lang").Value ?? "";
-                p.Translator = elp.Attribute("tlr").Value ?? "";
-                p.TranslatorContact = elp.Attribute("tlrcontact").Value ?? "";
-                p.Description = elp.Attribute("desc").Value ?? "";
+                p.Product = elp.Attribute("product")?.Value ?? "";
+                p.Author = elp.Attribute("author")?.Value ?? "";
+                p.Language = elp.Attribute("lang")?.Value ?? "";
+                p.Translator = elp.Attribute("tlr")?.Value ?? "";
+                p.TranslatorContact = elp.Attribute("tlrcontact")?.Value ?? "";
+                p.Description = elp.Attribute("desc")?.Value ?? "";
             }
 
             Document d = new Document
             {
                 Filename = file,
                 Categories = cats,
-                Properties = p
+                Properties = p,
+                HadMalformedElements = malformed
             };
 
             return d;
@@ -56,21 +69,31 @@ namespace QuickTranslate.Io
         {
             Category cat = new Category();
 
-            cat.Name = element.Attribute("name").Value;
+            // make sure the category has a name
+            cat.Name = element.Attribute("name")?.Value;
 
-            foreach (XElement item in element.Elements("item"))
+            if (cat.Name != null)
             {
-                Translation tl = new Translation
+
+                foreach (XElement item in element.Elements("item"))
                 {
-                    Id = item.Attribute("id").Value,
-                    Note = item.Attribute("note").Value,
-                    TranslatedItem = item.Value
-                };
+                    Translation tl = new Translation
+                    {
+                        Id = item.Attribute("id")?.Value ?? "",
+                        Note = item.Attribute("note")?.Value ?? "", // (older files may not have a note. in that case, just leave it empty)
+                        TranslatedItem = item.Value
+                    };
 
-                cat.AddTranslation(tl);
+                    cat.AddTranslation(tl);
+                }
+
+                return cat;
             }
-
-            return cat;
+            else
+            {
+                // if there is no name, just return nothing
+                return null;
+            }
         }
 
         /// <summary>

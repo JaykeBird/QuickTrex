@@ -26,5 +26,10 @@ namespace QuickTranslate.Base
         /// </summary>
         public string Filename { get; set; } = "";
 
+        /// <summary>
+        /// Indicates if the document had any elements that were improperly formatted (and thus skipped) while loading the file.
+        /// </summary>
+        public bool HadMalformedElements { get; set; } = false;
+
     }
 }
