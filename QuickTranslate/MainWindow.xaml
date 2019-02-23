@@ -300,6 +300,7 @@
                     <MenuItem x:Name="mnuFilePath" Header="_Path in Window Title" Click="mnuFilePath_Click" Checked="mnuFilePath_Checked" Unchecked="mnuFilePath_Unchecked" IsChecked="False" />
                 </MenuItem>
                 <MenuItem Header="_Help">
+                    <MenuItem x:Name="mnuTweet" Header="_Tweet Me..." Click="mnuTweet_Click" />
                     <MenuItem x:Name="mnuAbout" Header="_About..." Click="mnuAbout_Click" />
                 </MenuItem>
             </local:Menu>

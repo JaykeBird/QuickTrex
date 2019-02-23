@@ -46,6 +46,11 @@ namespace QuickTranslate
             ab.ShowDialog();
         }
 
+        private void mnuTweet_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://twitter.com/intent/tweet?text=%40JaykeBird%20%28write%20your%20message%20here%29");
+        }
+
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -1845,6 +1850,8 @@ namespace QuickTranslate
                 case "ConfirmDelete":
                     return mnuConfirmDelete_Click;
                 // Help menu
+                case "Tweet":
+                    return mnuTweet_Click;
                 case "About":
                     return mnuAbout_Click;
                 default:
@@ -1916,6 +1923,8 @@ namespace QuickTranslate
                 case "ConfirmDelete":
                     return mnuConfirmDelete;
                 // Help menu
+                case "Tweet":
+                    return mnuTweet;
                 case "About":
                     return mnuAbout;
                 default:
