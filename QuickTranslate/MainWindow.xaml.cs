@@ -40,16 +40,28 @@ namespace QuickTranslate
             MarkDirty(false);
         }
 
+        #region Help menu
+        private void mnuCode_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/JaykeBird/QuickTrex/");
+        }
+
+        private void mnuFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/JaykeBird/QuickTrex/issues/new?template=report-a-problem-or-give-a-suggestion.md&title=Write+your+title+here");
+        }
+
+        private void mnuEmailFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("mailto:shine-calendar@outlook.com");
+        }
+
         private void mnuAbout_Click(object sender, RoutedEventArgs e)
         {
             About ab = new About();
             ab.ShowDialog();
         }
-
-        private void mnuTweet_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://twitter.com/intent/tweet?text=%40JaykeBird%20%28write%20your%20message%20here%29");
-        }
+        #endregion
 
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
@@ -1878,8 +1890,12 @@ namespace QuickTranslate
                 case "ConfirmDelete":
                     return mnuConfirmDelete_Click;
                 // Help menu
-                case "Tweet":
-                    return mnuTweet_Click;
+                case "Code":
+                    return mnuCode_Click;
+                case "Feedback":
+                    return mnuFeedback_Click;
+                case "EmailFeedback":
+                    return mnuEmailFeedback_Click;
                 case "About":
                     return mnuAbout_Click;
                 default:
@@ -1953,8 +1969,12 @@ namespace QuickTranslate
                 case "ConfirmDelete":
                     return mnuConfirmDelete;
                 // Help menu
-                case "Tweet":
-                    return mnuTweet;
+                case "Code":
+                    return mnuCode;
+                case "Feedback":
+                    return mnuFeedback;
+                case "EmailFeedback":
+                    return mnuEmailFeedback;
                 case "About":
                     return mnuAbout;
                 default:
@@ -1962,12 +1982,8 @@ namespace QuickTranslate
             }
         }
 
-
-
-
         #endregion
 
         #endregion
-
     }
 }

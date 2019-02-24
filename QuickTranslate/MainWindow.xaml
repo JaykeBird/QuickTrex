@@ -73,7 +73,10 @@
                     <MenuItem x:Name="mnuFilePath" Header="_Path in Window Title" Click="mnuFilePath_Click" Checked="mnuFilePath_Checked" Unchecked="mnuFilePath_Unchecked" IsChecked="False" />
                 </MenuItem>
                 <MenuItem Header="_Help">
-                    <MenuItem x:Name="mnuTweet" Header="_Tweet Me..." Click="mnuTweet_Click" />
+                    <MenuItem x:Name="mnuCode" Header="_View Code Online..." Click="mnuCode_Click" />
+                    <MenuItem x:Name="mnuFeedback" Header="_Send Feedback..." Click="mnuFeedback_Click" />
+                    <MenuItem x:Name="mnuEmailFeedback" Header="_Send Feedback..." Click="mnuEmailFeedback_Click" />
+                    <Separator />
                     <MenuItem x:Name="mnuAbout" Header="_About..." Click="mnuAbout_Click" />
                 </MenuItem>
             </local:Menu>
@@ -155,7 +158,7 @@
             </Grid>
 
             <Grid x:Name="grdStatusBar" Grid.Row="1" Grid.ColumnSpan="2" Background="#FFF0F0F0" >
-                <StackPanel Orientation="Horizontal" x:Name="stkStatusBar" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" x:Name="stkStatusBar" VerticalAlignment="Center" Margin="5,0,0,0">
                     <TextBlock x:Name="lblLastSaved" Text="Last Saved: " />
                     <TextBlock x:Name="txtLastSaved" Text="Not Saved Yet" />
                     <Rectangle Width="1" Stroke="Black" Margin="5,0" />

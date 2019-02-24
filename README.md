@@ -21,6 +21,6 @@ To use QuickTrex, you need to have:
 * like... maybe 10 MB of free space? not even?
 
 ## Development requirements
-To develop QuickTrex, you need to have Visual Studio 2017 and all the stuff above.
+I use Visual Studio 2017 (version 15.8) to develop QuickTrex, but in theory, you should be fine with Visual Studio 2013 or later. No guarantees though!
 
-You could maybe be okay with an earlier version of Visual Studio, but no guarantees!
+There are no external packages or anything you need to get started (as of right now). Just open the solution, hit Start, and there you go!
