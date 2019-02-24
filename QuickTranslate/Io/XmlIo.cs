@@ -36,7 +36,7 @@ namespace QuickTranslate.Io
 
             }
 
-            Base.Properties p = null;
+            Base.Properties p = new Base.Properties();
             XElement elp = xdoc.Root.Element("properties");
 
             if (elp != null)

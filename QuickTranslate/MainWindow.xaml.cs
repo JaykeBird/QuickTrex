@@ -1214,9 +1214,10 @@ namespace QuickTranslate
 
         private void mnuCloseBase_Click(object sender, RoutedEventArgs e)
         {
-            baseCategories = null;
+            baseCategories.Clear();
             baseCategory = null;
-            baseDoc = null;
+            baseDoc = new Document();
+            baseDoc.Properties = new Base.Properties();
 
             SelectCategory(category.Name);
         }
