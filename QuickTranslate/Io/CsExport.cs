@@ -62,7 +62,13 @@ namespace QuickTranslate.Io
             sb.AppendLine("    }");
             sb.AppendLine("}");
 
-            File.WriteAllText(file, sb.ToString());
+            string result = sb.ToString();
+
+            // try to avoid invalid string literals
+            result = result.Replace("\\", "\\\\");
+            result = result.Replace("\"", "\\\"");
+
+            File.WriteAllText(file, result);
         }
 
     }

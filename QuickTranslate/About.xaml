@@ -12,7 +12,7 @@
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="74,42,0,0" TextWrapping="Wrap" Text="Translation/Localization Extension" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="74,58,0,0" TextWrapping="Wrap" Text="Based upon DataSynth project" VerticalAlignment="Top"/>
         <Image x:Name="image" HorizontalAlignment="Left" Height="32" Margin="20,19,0,0" VerticalAlignment="Top" Width="32" Source="Icon32.png"/>
-        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="74,83,0,0" TextWrapping="Wrap" Text="Version 1.2.1" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="74,83,0,0" TextWrapping="Wrap" Text="Version 1.2.2" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="74,100,0,0" TextWrapping="Wrap" Text="© Jacob R. Huempfner, 2014-2019" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="74,132,0,0" TextWrapping="Wrap" Text="No warranties are provided for usage of this program." VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy9" HorizontalAlignment="Left" Margin="74,116,0,0" TextWrapping="Wrap" Text="Licensed under MIT License" VerticalAlignment="Top"/>

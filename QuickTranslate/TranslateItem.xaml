@@ -12,13 +12,13 @@
             <ColumnDefinition Width="16*" x:Name="colTitem" />
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="txtId" Text="Id" HorizontalAlignment="Left" Margin="32,7,0,7" VerticalAlignment="Center"/>
-        <TextBox x:Name="txtBase" Text="" Grid.Column="1" Height="23" Margin="2,0,2,0" VerticalAlignment="Center" IsReadOnly="True" />
-        <TextBox x:Name="txtTitem" Text="" Grid.Column="2" Height="23" Margin="2,0,2,0" VerticalAlignment="Center" TextChanged="txtTitem_TextChanged" />
+        <TextBox x:Name="txtBase" Text="" Grid.Column="1" Height="23" Margin="3,0,1,0" VerticalAlignment="Center" IsReadOnly="True" />
+        <TextBox x:Name="txtTitem" Text="" Grid.Column="2" Height="23" Margin="3,0,2,0" VerticalAlignment="Center" TextChanged="txtTitem_TextChanged" />
         <Rectangle HorizontalAlignment="Left" Margin="4,12,0,0" Fill="DarkGray" VerticalAlignment="Top" Height="2" Width="2"/>
         <Rectangle HorizontalAlignment="Left" Margin="8,12,0,0" Fill="DarkGray" VerticalAlignment="Top" Height="2" Width="2"/>
         <Rectangle HorizontalAlignment="Left" Margin="4,16,0,0" Fill="DarkGray" VerticalAlignment="Top" Height="2" Width="2"/>
         <Rectangle HorizontalAlignment="Left" Margin="8,16,0,0" Fill="DarkGray" VerticalAlignment="Top" Height="2" Width="2"/>
-        <Grid Background="#01000000" x:Name="dragField" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Cursor="SizeNS" MouseMove="dragField_MouseMove" />
+        <Grid Background="#01000000" x:Name="dragField" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="31" Cursor="SizeNS" MouseMove="dragField_MouseMove" />
         <CheckBox x:Name="chkSelect" Content="" HorizontalAlignment="Left" Margin="13,7,0,0" VerticalAlignment="Top" ToolTip="Select" Checked="checkBox_Checked" Unchecked="checkBox_Unchecked" Width="18" />
         <Rectangle x:Name="dropAboveShow" Visibility="Collapsed" Fill="Black" Height="2" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
         <Rectangle x:Name="dropBelowShow" Visibility="Collapsed" Fill="Black" Height="2" VerticalAlignment="Bottom" Grid.ColumnSpan="3"/>

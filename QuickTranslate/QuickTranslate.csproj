@@ -46,7 +46,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -75,16 +74,20 @@
     <Compile Include="ClickSelectTextBox.cs" />
     <Compile Include="DialogHelper.cs" />
     <Compile Include="DropEventArgs.cs" />
-    <Compile Include="ExportCsDialog.xaml.cs">
+    <Compile Include="Io\Dialogs\ExportCsDialog.xaml.cs">
       <DependentUpon>ExportCsDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ExportCsvDialog.xaml.cs">
+    <Compile Include="Io\Dialogs\ExportCsvDialog.xaml.cs">
       <DependentUpon>ExportCsvDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Io\AxmlExport.cs" />
     <Compile Include="Io\CsExport.cs" />
     <Compile Include="Io\CsvExport.cs" />
+    <Compile Include="Io\Dialogs\ExportJavaDialog.xaml.cs">
+      <DependentUpon>ExportJavaDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Io\JavaExport.cs" />
     <Compile Include="Io\JsonExport.cs" />
     <Compile Include="Io\ResxExport.cs" />
     <Compile Include="Io\XamlResExport.cs" />
@@ -103,11 +106,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ExportCsDialog.xaml">
+    <Page Include="Io\Dialogs\ExportCsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ExportCsvDialog.xaml">
+    <Page Include="Io\Dialogs\ExportCsvDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Io\Dialogs\ExportJavaDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

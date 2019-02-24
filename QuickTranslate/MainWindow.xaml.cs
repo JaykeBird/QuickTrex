@@ -351,20 +351,18 @@ namespace QuickTranslate
                 name = "";
             }
 
-            bool nameExists = false;
+            Category c = GetCategory(name);
 
-            foreach (Category item in categories)
+            if (c != null)
             {
-                if (item.Name == name)
-                {
-                    category = item;
-                    nameExists = true;
-                }
+                category = c;
             }
-
-            if (!nameExists)
+            else
             {
                 categories.Add(new Category(name));
+                categoryNames.Add(name);
+
+                category = c;
             }
 
             bool baseNameExists = false;
@@ -406,13 +404,13 @@ namespace QuickTranslate
                 RegisterEntry(item.Id, baseStr, item.TranslatedItem);
             }
 
-            if (baseCategory != null)
-            {
-                foreach (Translation item in baseTranslations)
-                {
-                    RegisterEntry(item.Id, item.TranslatedItem, "");
-                }
-            }
+            //if (baseCategory != null)
+            //{
+            //    foreach (Translation item in baseTranslations)
+            //    {
+            //        RegisterEntry(item.Id, item.TranslatedItem, "");
+            //    }
+            //}
         }
 
         #endregion
@@ -1214,7 +1212,18 @@ namespace QuickTranslate
             createEntriesFromBase = false;
         }
 
+        private void mnuCloseBase_Click(object sender, RoutedEventArgs e)
+        {
+            baseCategories = null;
+            baseCategory = null;
+            baseDoc = null;
+
+            SelectCategory(category.Name);
+        }
+
         #endregion
+
+        #region IO Methods
 
         public Document Open(string dialogTitle)
         {
@@ -1263,8 +1272,8 @@ namespace QuickTranslate
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Title = dialogTitle;
-            sfd.Filter = "Basic JSON List|*.json|Categorized JSON List|*.json|XAML ResourceDictionary|*.xaml|C# Dictionary|*.cs|Android Strings XML|*.xml|" +
-                "Comma-Separated Values (CSV)|*.csv|Resources XML File (resx)|*.resx";
+            sfd.Filter = "Basic JSON List|*.json|Categorized JSON List|*.json|XAML ResourceDictionary|*.xaml|C# Dictionary|*.cs|Java HashMap/HashTable|*.java|" +
+                "Android Strings XML|*.xml|Comma-Separated Values (CSV)|*.csv|Resources XML File (resx)|*.resx";
             sfd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             bool? res = sfd.ShowDialog(this);
@@ -1299,9 +1308,23 @@ namespace QuickTranslate
                         }
                         break;
                     case 5:
-                        AxmlExport.ExportAndroidStringFile(sfd.FileName, items);
+                        ExportJavaDialog ejd = new ExportJavaDialog();
+                        ejd.Owner = this;
+                        ejd.ShowDialog();
+
+                        if (ejd.DialogResult)
+                        {
+                            JavaExport.ExportJavaMap(sfd.FileName, items, ejd.ClassName, ejd.UseHashtable);
+                        }
+                        else
+                        {
+                            return false;
+                        }
                         break;
                     case 6:
+                        AxmlExport.ExportAndroidStringFile(sfd.FileName, items);
+                        break;
+                    case 7:
                         ExportCsvDialog esd = new ExportCsvDialog();
                         esd.Owner = this;
                         esd.ShowDialog();
@@ -1315,7 +1338,7 @@ namespace QuickTranslate
                             return false;
                         }
                         break;
-                    case 7:
+                    case 8:
                         ResxExport.ExportToResx(sfd.FileName, items);
                         break;
                 }
@@ -1327,6 +1350,8 @@ namespace QuickTranslate
                 return false;
             }
         }
+
+        #endregion
 
         #endregion
 
@@ -1810,6 +1835,8 @@ namespace QuickTranslate
                     return mnuOpenAsBase_Click;
                 case "CreateFromBase":
                     return mnuCreateFromBase_Click;
+                case "CloseBase":
+                    return mnuCloseBase_Click;
                 case "Save":
                     return mnuSave_Click;
                 case "SaveAs":
@@ -1883,6 +1910,8 @@ namespace QuickTranslate
                     return mnuOpenAsBase;
                 case "CreateFromBase":
                     return mnuCreateFromBase;
+                case "CloseBase":
+                    return mnuCloseBase;
                 case "Save":
                     return mnuSave;
                 case "SaveAs":
@@ -1938,5 +1967,6 @@ namespace QuickTranslate
         #endregion
 
         #endregion
+
     }
 }
