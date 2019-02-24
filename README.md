@@ -3,6 +3,8 @@ A quick and simple localization program, for usage by small/hobbyist developers!
 
 [Get started with it today!](https://github.com/JaykeBird/QuickTrex/releases)
 
+![Image of main window](showcase.png)
+
 ## Features
 * Organize strings into categories
 * Write translations in your language while seeing the text in the original language
