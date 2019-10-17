@@ -48,7 +48,7 @@ namespace QuickTranslate
 
         private void mnuFeedback_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/JaykeBird/QuickTrex/issues/new");
+            System.Diagnostics.Process.Start("https://github.com/JaykeBird/QuickTrex/issues/new/choose");
         }
 
         private void mnuEmailFeedback_Click(object sender, RoutedEventArgs e)

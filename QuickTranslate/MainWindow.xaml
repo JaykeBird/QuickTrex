@@ -75,7 +75,7 @@
                 <MenuItem Header="_Help">
                     <MenuItem x:Name="mnuCode" Header="_View Code Online..." Click="mnuCode_Click" />
                     <MenuItem x:Name="mnuFeedback" Header="_Send Feedback..." Click="mnuFeedback_Click" />
-                    <MenuItem x:Name="mnuEmailFeedback" Header="_Send Feedback..." Click="mnuEmailFeedback_Click" />
+                    <MenuItem x:Name="mnuEmailFeedback" Header="_Contact via Email..." Click="mnuEmailFeedback_Click" />
                     <Separator />
                     <MenuItem x:Name="mnuAbout" Header="_About..." Click="mnuAbout_Click" />
                 </MenuItem>
