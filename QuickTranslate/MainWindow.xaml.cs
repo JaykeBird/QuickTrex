@@ -1286,7 +1286,7 @@ namespace QuickTranslate
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Title = dialogTitle;
             sfd.Filter = "Basic JSON List|*.json|Categorized JSON List|*.json|XAML ResourceDictionary|*.xaml|C# Dictionary|*.cs|Java HashMap/HashTable|*.java|" +
-                "Android Strings XML|*.xml|Comma-Separated Values (CSV)|*.csv|Resources XML File (resx)|*.resx";
+                "Android Strings XML|*.xml|Comma-Separated Values (CSV)|*.csv|Resources XML (ResX) File|*.resx";
             sfd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             bool? res = sfd.ShowDialog(this);

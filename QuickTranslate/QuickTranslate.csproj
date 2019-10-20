@@ -32,10 +32,20 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Windows.Forms" />
+    <Compile Remove="Backup1\**" />
+    <Compile Remove="Backup\**" />
+    <EmbeddedResource Remove="Backup1\**" />
+    <EmbeddedResource Remove="Backup\**" />
+    <None Remove="Backup1\**" />
+    <None Remove="Backup\**" />
+    <Page Remove="Backup1\**" />
+    <Page Remove="Backup\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
