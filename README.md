@@ -17,8 +17,10 @@ QuickTrex is licensed under the [MIT License](LICENSE).
 To use QuickTrex, you need to have:
 
 * .NET Framework 4.5
-* Windows 7 or later
+* Windows Vista SP2 or later
 * like... maybe 10 MB of free space? not even?
+
+If you have Windows 8 or Windows 10, you already have .NET Framework 4.5!
 
 ## Development requirements
 I use Visual Studio 2017 (version 15.8) to develop QuickTrex, but in theory, you should be fine with Visual Studio 2013 or later. No guarantees though!
